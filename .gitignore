@@ -1,0 +1,4 @@
+# editor settings
+.idea
+.vscode
+jsconfig.json
