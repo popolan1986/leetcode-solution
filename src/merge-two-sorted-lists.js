@@ -19,38 +19,32 @@ var mergeTwoLists = function(l1, l2) {
         return l1;
     }
 
-    let node1 = l1;
-    let node2 = l2;
     let head = new ListNode(undefined);
     const nullHead = head;
-    while (node1 && node2) {
-        if (node1.val < node2.val) {
-            head.next = node1;
-            node1 = node1.next;
-        } else if (node1.val > node2.val) {
-            head.next = node2;
-            node2 = node2.next;
+    while (l1 && l2) {
+        if (l1.val < l2.val) {
+            head.next = l1;
+            l1 = l1.next;
+        } else if (l1.val > l2.val) {
+            head.next = l2;
+            l2 = l2.next;
         } else {
-            head.next = node1;
-            node1 = node1.next;
+            head.next = l1;
+            l1 = l1.next;
             head = head.next;
-            head.next = node2;
-            node2 = node2.next;
+            head.next = l2;
+            l2 = l2.next;
         }
 
         head = head.next;
         head.next = null;
     }
-
-    if (node1) {
-        head.next = node1;
-    } else if (node2) {
-        head.next = node2;
-    }
+    head.next = l1 || l2;
 
     return nullHead.next;
 };
 
+// faster than 100% JS online solutions
 // test case
 function createTestCase(list1, list2) {
     let last1 = new ListNode(list1[0]);
